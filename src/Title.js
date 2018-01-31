@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
-
+/*
+  HoverText is a Stateless Functional Component (Dumb Component). It receives props and returns a React.element
+*/
 const HoverText = (props) => {
   return (
     <span
@@ -13,6 +15,11 @@ const HoverText = (props) => {
   )
 }
 
+/* 
+  This is a function that takes in the entire redux state and returns an object. 
+  We have elected to return an object that has the properties hoverText and hoverColor.
+  We get the values for those properties from our state object that we received
+*/
 const mapStateToProps = (state) => {
   console.log(state);
   return {
@@ -21,10 +28,19 @@ const mapStateToProps = (state) => {
   }
 }
 
+/*
+  We've declared a constant variable HoverTextWrapped. 
+  It's value is a component that is returned by connect(mapStateToProps)(HoverText)
+*/
+
 const HoverTextWrapped = connect(mapStateToProps)(HoverText)
 
 
 
+/*
+  Notice how the Title Component is able to pass its own props to HoverTextWrapped Component, 
+  but it has no idea about the props that redux is passing to the HoverText Component
+*/
 class Title extends Component {
   constructor(props) {
     super(props);
