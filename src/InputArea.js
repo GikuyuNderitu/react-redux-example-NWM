@@ -7,6 +7,12 @@ import {
   DECREMENT
 } from './index';
 
+/* 
+  At the top of the file we're importing the connect function from the react-redux package
+
+  We are also importing all of the types that we defined in our index file. We need them to later dispatch our actions
+*/
+
 class InputArea extends Component {
 
   constructor(props) {
@@ -30,12 +36,9 @@ class InputArea extends Component {
     this.props.changeColor(value);
   }
   
-  changeNumber(num) {
-    console.log(num);
-  }
   render() {
-    const { input} = this.state;
-    const {color} = this.props;
+    const { input } = this.state;
+    const { color } = this.props;
     const submitInput = val => val
     return (
       <div style={{textAlign: 'center', margin: '50px 0'}}>
@@ -66,11 +69,23 @@ class InputArea extends Component {
   }
 }
 
+/* 
+  This is a function that takes in the entire redux state and returns an object. 
+  We have elected to return an object that has the property color.
+  We get the values of that property from our state object that we received
+*/
+
 const mapStateToProps = (state) => {
   return {
     color: state.color
   }
 }
+
+/* 
+  This is a function that takes in the redux dispatcher and returns an object. 
+  We have elected to return an object that has the properties changeColor, submitInput and changeNumber.
+  The values for those properties are functions that may or may not receive a parameter it then uses the dispatch function to dispatch an action.
+*/
 
 const mapDispatchToProps = (dispatch) => {
   return {
@@ -88,4 +103,5 @@ const mapDispatchToProps = (dispatch) => {
 }
 
 
+// Notice, we can immediately export our wrapped component
 export default connect(mapStateToProps, mapDispatchToProps)(InputArea);

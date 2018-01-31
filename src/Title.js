@@ -20,6 +20,7 @@ const HoverText = (props) => {
   We have elected to return an object that has the properties hoverText and hoverColor.
   We get the values for those properties from our state object that we received
 */
+
 const mapStateToProps = (state) => {
   console.log(state);
   return {
