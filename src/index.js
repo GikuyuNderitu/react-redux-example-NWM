@@ -6,6 +6,13 @@ import registerServiceWorker from './registerServiceWorker';
 import { createStore, compose } from 'redux';
 import { Provider } from 'react-redux';
 
+/*
+  This section is doing two things, 
+
+  1. It is defining constant variables that we will use as types
+  2. It is adding all of the defined variables to the export object
+
+*/
 export const INCREMENT = 'ASDFKASJDFO-A28';
 export const DECREMENT = 'ASDFKASJDFO-A22';
 export const SUBMIT_INPUT = 'DFASDFKASJDFO-A22';
@@ -17,7 +24,11 @@ const initialState = {
   text: 'Hover Me'
 };
 
-// 
+/*
+  The reducer function takes in state and an action
+
+  Based off of the action.type, it returns a new state
+*/
 function reducer(state=initialState, action) {
   switch(action.type) {
     case INCREMENT:
@@ -33,6 +44,10 @@ function reducer(state=initialState, action) {
   }
 }
 
+/*
+  The store variable receives a reducer and a bunch of enhancers. (the compose function, imported at the top of the file, takes in multiple enhancers and returns a big enhancer function. We will talk about it in later in class)
+*/
+
 const store = createStore(
   reducer,
   compose(
@@ -41,6 +56,9 @@ const store = createStore(
 );
 
 const Root = () => (
+  /*
+    We pass the store as a prop to the Provider Component. We need to use the Provider component so that components further down our component tree have access to the values in store
+  */
   <Provider store={store} >
     <App />
   </Provider>
